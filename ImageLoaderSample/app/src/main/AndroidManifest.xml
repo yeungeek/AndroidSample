@@ -2,6 +2,8 @@
 <manifest package="com.yeungeek.imageloadersample"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".v1.V1Activity"/>
+        <activity android:name=".custom.v1.V1Activity"/>
 
     </application>
 

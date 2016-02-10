@@ -1,15 +1,20 @@
 package com.yeungeek.imageloadersample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import com.yeungeek.imageloadersample.custom.v1.V1Activity;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private Button mImageLoaderV1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        initView();
+    }
+
+    private void initView() {
+        mImageLoaderV1 = (Button) findViewById(R.id.image_loader_v1);
+        mImageLoaderV1.setOnClickListener(this);
     }
 
     @Override
@@ -48,5 +60,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.image_loader_v1:
+                startActivity(new Intent(MainActivity.this, V1Activity.class));
+                break;
+        }
     }
 }

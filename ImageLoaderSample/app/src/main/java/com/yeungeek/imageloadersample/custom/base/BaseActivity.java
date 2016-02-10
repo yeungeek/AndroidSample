@@ -1,4 +1,4 @@
-package com.yeungeek.imageloadersample.base;
+package com.yeungeek.imageloadersample.custom.base;
 
 import android.app.Activity;
 
