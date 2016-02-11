@@ -287,7 +287,7 @@ public class ImageLoader {
             if (msg.what == MESSAGE_POST_RESULT) {
                 LoadResult result = (LoadResult) msg.obj;
                 ImageView imageView = result.imageView;
-                final String url = (String) imageView.getTag();
+                final String url = (String) imageView.getTag(TAG_KEY_URI);
                 if (url.equals(result.url)) {
                     imageView.setImageBitmap(result.bitmap);
                 } else {
