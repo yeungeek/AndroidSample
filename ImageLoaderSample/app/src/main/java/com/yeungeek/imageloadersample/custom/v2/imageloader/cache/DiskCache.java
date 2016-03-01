@@ -9,7 +9,7 @@ import android.util.Log;
 import com.jakewharton.disklrucache.DiskLruCache;
 import com.yeungeek.imageloadersample.custom.v2.imageloader.core.BitmapDecoder;
 import com.yeungeek.imageloadersample.custom.v2.imageloader.core.BitmapRequest;
-import com.yeungeek.imageloadersample.uil.IOUtils;
+import com.yeungeek.imageloadersample.custom.util.IOUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

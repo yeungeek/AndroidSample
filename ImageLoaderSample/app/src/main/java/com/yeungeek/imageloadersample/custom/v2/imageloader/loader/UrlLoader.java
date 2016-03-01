@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 
 import com.yeungeek.imageloadersample.custom.v2.imageloader.core.BitmapDecoder;
 import com.yeungeek.imageloadersample.custom.v2.imageloader.core.BitmapRequest;
-import com.yeungeek.imageloadersample.uil.IOUtils;
+import com.yeungeek.imageloadersample.custom.util.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;

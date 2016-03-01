@@ -1,4 +1,4 @@
-package com.yeungeek.imageloadersample.uil;
+package com.yeungeek.imageloadersample.custom.util;
 
 import java.io.Closeable;
 
