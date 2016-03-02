@@ -77,7 +77,7 @@ public class DiskCache implements BitmapCache {
             }
         };
 
-        return decoder.decodeBitmap(key.reqWidth, key.reqHeight);
+        return decoder.decodeBitmap(key.getImageViewWidth(), key.getImageViewHeight());
     }
 
     @Override

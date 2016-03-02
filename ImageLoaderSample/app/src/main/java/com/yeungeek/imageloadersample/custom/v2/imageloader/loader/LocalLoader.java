@@ -30,6 +30,6 @@ public class LocalLoader extends AbsLoader {
                 return BitmapFactory.decodeFile(imagePath, options);
             }
         };
-        return decoder.decodeBitmap(request.reqWidth, request.reqHeight);
+        return decoder.decodeBitmap(request.getImageViewWidth(), request.getImageViewHeight());
     }
 }

@@ -1,7 +1,6 @@
 package com.yeungeek.imageloadersample.custom.v2.imageloader.core;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.widget.ImageView;
 
 import com.yeungeek.imageloadersample.custom.v2.imageloader.cache.BitmapCache;
@@ -47,15 +46,15 @@ public final class SimpleImageLoader {
         return mConfig;
     }
 
-    public void displayImageView(final Image imageView, final String uri) {
-        displayImageView(imageView, uri);
+    public void displayImage(final ImageView imageView, final String uri) {
+        displayImage(imageView, uri, null, null);
     }
 
-    public void displayImageView(final ImageView imageView, final String uri, final ImageListener listener) {
-        displayImageView(imageView, uri, null, listener);
+    public void displayImage(final ImageView imageView, final String uri, final ImageListener listener) {
+        displayImage(imageView, uri, null, listener);
     }
 
-    public void displayImageView(final ImageView imageView, final String uri, final DisplayConfig config, final ImageListener listener) {
+    public void displayImage(final ImageView imageView, final String uri, final DisplayConfig config, final ImageListener listener) {
         BitmapRequest request = new BitmapRequest(imageView, uri, config, listener);
         request.displayConfig = request.displayConfig != null ? request.displayConfig : mConfig.displayConfig;
         mImageQueue.addRequest(request);
@@ -76,7 +75,6 @@ public final class SimpleImageLoader {
         if (mCache == null) {
             mCache = new MemoryCache();
         }
-
     }
 
     public static interface ImageListener {

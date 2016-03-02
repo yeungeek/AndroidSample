@@ -61,6 +61,7 @@ public final class RequestQueue {
     public void addRequest(BitmapRequest request) {
         if (!mRequestQueue.contains(request)) {
             request.serialNum = this.generateSerialNumber();
+            mRequestQueue.add(request);
         } else {
             Log.e("DEBUG", "### queue contains");
         }

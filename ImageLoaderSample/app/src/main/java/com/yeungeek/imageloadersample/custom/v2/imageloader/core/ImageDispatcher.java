@@ -2,6 +2,9 @@ package com.yeungeek.imageloadersample.custom.v2.imageloader.core;
 
 import android.util.Log;
 
+import com.yeungeek.imageloadersample.custom.v2.imageloader.loader.Loader;
+import com.yeungeek.imageloadersample.custom.v2.imageloader.loader.LoaderManager;
+
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -24,7 +27,8 @@ final class ImageDispatcher extends Thread {
                 }
 
                 final String schema = parseSchema(request.imageUri);
-//                Loader loader =
+                Loader loader = LoaderManager.instance().getLoader(schema);
+                loader.loadImage(request);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

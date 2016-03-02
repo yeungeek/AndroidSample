@@ -3,6 +3,7 @@
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -22,7 +23,7 @@
         </activity>
 
         <activity android:name=".custom.v1.V1Activity"/>
+        <activity android:name=".custom.v2.V2Activity"/>
 
     </application>
-
 </manifest>

@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.yeungeek.imageloadersample.custom.v1.V1Activity;
+import com.yeungeek.imageloadersample.custom.v2.V2Activity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mImageLoaderV1;
+    private Button mImageLoaderV2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initView() {
         mImageLoaderV1 = (Button) findViewById(R.id.image_loader_v1);
+        mImageLoaderV2 = (Button) findViewById(R.id.image_loader_v2);
         mImageLoaderV1.setOnClickListener(this);
+        mImageLoaderV2.setOnClickListener(this);
     }
 
     @Override
@@ -67,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.image_loader_v1:
                 startActivity(new Intent(MainActivity.this, V1Activity.class));
+                break;
+            case R.id.image_loader_v2:
+                startActivity(new Intent(MainActivity.this, V2Activity.class));
                 break;
         }
     }

@@ -31,8 +31,7 @@ public class UrlLoader extends AbsLoader {
                 @Override
                 public Bitmap decodeBitmapWithOption(BitmapFactory.Options options) {
                     final Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
-
-                    if (options.inJustDecodeBounds) {
+                    if (null != options && options.inJustDecodeBounds) {
                         try {
                             inputStream.reset();
                         } catch (IOException e) {
@@ -45,7 +44,7 @@ public class UrlLoader extends AbsLoader {
                 }
             };
 
-            return decoder.decodeBitmap(request.reqWidth, request.reqHeight);
+            return decoder.decodeBitmap(request.getImageViewWidth(), request.getImageViewHeight());
 
         } catch (IOException e) {
             e.printStackTrace();

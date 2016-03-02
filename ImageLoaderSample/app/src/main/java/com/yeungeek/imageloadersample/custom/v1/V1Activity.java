@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.yeungeek.imageloadersample.R;
 import com.yeungeek.imageloadersample.custom.base.BaseActivity;
+import com.yeungeek.imageloadersample.custom.util.AndroidUtils;
 import com.yeungeek.imageloadersample.custom.v1.imageloader.ImageLoader;
 
 import java.util.Arrays;
@@ -44,8 +45,8 @@ public class V1Activity extends BaseActivity implements AbsListView.OnScrollList
     private void initData() {
         mDatas = Arrays.asList(Constants.urls);
 
-        int screenWidth = getScreenMetrics(this).widthPixels;
-        int space = (int) dp2px(this, 20f);
+        int screenWidth = AndroidUtils.getScreenMetrics(this).widthPixels;
+        int space = (int) AndroidUtils.dp2px(this, 20f);
         mImageWidth = (screenWidth - space) / 3;
     }
 
@@ -126,18 +127,4 @@ public class V1Activity extends BaseActivity implements AbsListView.OnScrollList
     private static class ViewHolder {
         ImageView imageView;
     }
-
-    public static DisplayMetrics getScreenMetrics(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(dm);
-        return dm;
-    }
-
-
-    public static float dp2px(Context context, float dp) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
-                context.getResources().getDisplayMetrics());
-    }
-
 }

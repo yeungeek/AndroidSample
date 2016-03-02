@@ -2,10 +2,10 @@ package com.yeungeek.imageloadersample.custom.v2.imageloader.core;
 
 import android.widget.ImageView;
 
-import com.yeungeek.imageloadersample.custom.v2.imageloader.config.DisplayConfig;
-import com.yeungeek.imageloadersample.custom.v2.imageloader.policy.LoadPolicy;
 import com.yeungeek.imageloadersample.custom.util.ImageViewUitls;
 import com.yeungeek.imageloadersample.custom.util.Md5Utils;
+import com.yeungeek.imageloadersample.custom.v2.imageloader.config.DisplayConfig;
+import com.yeungeek.imageloadersample.custom.v2.imageloader.policy.LoadPolicy;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
@@ -19,8 +19,8 @@ public class BitmapRequest implements Comparable<BitmapRequest> {
     public DisplayConfig displayConfig;
     public SimpleImageLoader.ImageListener imageListener;
 
-    public int reqWidth;
-    public int reqHeight;
+//    public int reqWidth;
+//    public int reqHeight;
 
     public String imageUri = "";
     public String imageUriMd5 = "";
@@ -37,6 +37,10 @@ public class BitmapRequest implements Comparable<BitmapRequest> {
         this.imageUri = uri;
         imageView.setTag(uri);
         this.imageUriMd5 = Md5Utils.getMd5(uri);
+
+        //
+//        reqWidth = getImageViewWidth();
+//        reqHeight = getImageViewHeight();
     }
 
     public ImageView getImageView() {
