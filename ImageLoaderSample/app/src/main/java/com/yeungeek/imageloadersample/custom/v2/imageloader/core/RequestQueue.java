@@ -10,7 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by yeungeek on 2016/2/11.
  */
 public final class RequestQueue {
+    //线程模型
     private BlockingQueue<BitmapRequest> mRequestQueue = new PriorityBlockingQueue<BitmapRequest>();
+    //使用线程池实现
 
     /**
      * 请求的序列化生成器
