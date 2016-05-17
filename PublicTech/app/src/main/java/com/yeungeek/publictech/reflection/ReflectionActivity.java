@@ -4,15 +4,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.github.pedrovgs.lynx.LynxView;
 import com.yeungeek.publictech.BaseActivity;
 import com.yeungeek.publictech.R;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.List;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -21,6 +27,9 @@ import butterknife.OnClick;
 public class ReflectionActivity extends BaseActivity {
     private final static String TAG = "test";
     private final String PERSON_CLASS_NAME = "com.yeungeek.publictech.reflection.Person";
+
+    @BindView(R.id.id_console)
+    LynxView lynxView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,9 +42,75 @@ public class ReflectionActivity extends BaseActivity {
         return R.layout.activity_reflection;
     }
 
+    @OnClick(R.id.id_benchmarks)
+    public void benchmarks() {
+        lynxView.clear();
+        try {
+            Log.e(TAG, "### benchmarks");
+            long start = 0;
+            long end = 0;
+            start = System.currentTimeMillis();
+            //1. getFields
+            Class<?> clazz1 = android.app.Activity.class;
+            for (int i = 0; i < 10000; i++) {
+                clazz1.getFields();
+            }
+            end = System.currentTimeMillis();
+            Log.d(TAG, "### benchmarks getFields: " + (end - start));
+
+            //2. getDeclaredFields
+            start = System.currentTimeMillis();
+            Class<?> clazz2 = android.app.Activity.class;
+            for (int i = 0; i < 10000; i++) {
+                clazz2.getDeclaredFields();
+            }
+            end = System.currentTimeMillis();
+            Log.d(TAG, "### benchmarks getDeclaredFields: " + (end - start));
+
+            //3. getGenericInterfaces
+            start = System.currentTimeMillis();
+            Class<?> clazz3 = android.app.Activity.class;
+            for (int i = 0; i < 10000; i++) {
+                clazz3.getGenericInterfaces();
+            }
+            end = System.currentTimeMillis();
+            Log.d(TAG, "### benchmarks getGenericInterfaces: " + (end - start));
+
+            //4. setObject
+            start = System.currentTimeMillis();
+            Class<?> clazz4 = android.app.Activity.class;
+            for (int i = 0; i < 10000; i++) {
+                Field field = clazz4.getDeclaredField("mTitle");
+                field.setAccessible(true);
+                field.set(this, "Title");
+            }
+            end = System.currentTimeMillis();
+            Log.d(TAG, "### benchmarks setObject: " + (end - start));
+
+            //5. newInstance
+            start = System.currentTimeMillis();
+            for (int i = 0; i < 100000; i++) {
+                new Person();
+            }
+            end = System.currentTimeMillis();
+            Log.d(TAG, "### benchmarks newInstance: " + (end - start));
+
+            //5. reflection newInstance
+            start = System.currentTimeMillis();
+            for (int i = 0; i < 100000; i++) {
+                Person.class.newInstance();
+            }
+            end = System.currentTimeMillis();
+            Log.d(TAG, "### benchmarks reflection newInstance: " + (end - start));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @OnClick(R.id.id_basic)
     public void basic() {
-        //1. getConstructor
+        lynxView.clear();
         try {
             inspectClasses();
             inspectClassesFromConstructor();
@@ -48,6 +123,9 @@ public class ReflectionActivity extends BaseActivity {
             //
             inspectAnnotations();
             inspectClassLoader();
+
+            inspectGeneric();
+            inspectArray();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -173,5 +251,69 @@ public class ReflectionActivity extends BaseActivity {
         Class<?> clazz = Class.forName(PERSON_CLASS_NAME);
         String name = clazz.getClassLoader().getClass().getSimpleName();
         Log.e(TAG, "### inspectClassLoader: " + name);
+    }
+
+    private void inspectGeneric() throws Exception {
+        Log.e(TAG, "### inspectGeneric");
+        Method method = Father.class.getMethod("getStringList", null);
+        Type type = method.getGenericReturnType();
+
+        if (type instanceof ParameterizedType) {
+            ParameterizedType paramType = (ParameterizedType) type;
+            Type[] types = paramType.getActualTypeArguments();
+            for (Type typeArg : types) {
+                Class typeArgClass = (Class) typeArg;
+                Log.d(TAG, "### typeArgClass: " + typeArgClass);
+            }
+        }
+
+        Log.e(TAG, "### method parameter");
+        method = Father.class.getMethod("setStringList", List.class);
+
+        Type[] types = method.getGenericParameterTypes();
+        for (Type genericType : types) {
+            if (genericType instanceof ParameterizedType) {
+                ParameterizedType parameterizedType = (ParameterizedType) genericType;
+                Type[] args = parameterizedType.getActualTypeArguments();
+                for (Type arg : args) {
+                    Class argClass = (Class) arg;
+                    Log.d(TAG, "### typeArgClass: " + argClass);
+                }
+            }
+        }
+
+        Log.e(TAG, "### inspect field parameter");
+
+        Field field = Father.class.getDeclaredField("stringList");
+        type = field.getGenericType();
+        if (type instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            Type[] args = parameterizedType.getActualTypeArguments();
+            for (Type arg : args) {
+                Class argClass = (Class) arg;
+                Log.d(TAG, "### typeArgClass: " + argClass);
+            }
+        }
+    }
+
+    private void inspectArray() throws Exception {
+        Log.e(TAG, "### inspectArray");
+        int[] intArray = (int[]) Array.newInstance(int.class, 3);
+
+        Array.setInt(intArray, 0, 10);
+        Array.setInt(intArray, 1, 20);
+        Array.setInt(intArray, 2, 30);
+
+        Log.d(TAG, "### get Array: " + Array.get(intArray, 0));
+
+        Class stringClass = String[].class;
+        Class intArray1 = Class.forName("[I");
+        Class stringArray = Class.forName("[Ljava.lang.String;");
+
+        Class stringArray1 = Array.newInstance(String[].class, 3).getClass();
+        Log.d(TAG, "### stringarray?: " + stringArray.isArray());
+        Class componentType = stringArray1.getComponentType();
+        Log.d(TAG, "### componentType: " + componentType);
+
     }
 }

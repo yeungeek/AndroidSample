@@ -18,6 +18,7 @@
         android:text="Benchmarks"/>
 
     <com.github.pedrovgs.lynx.LynxView
+        android:id="@+id/id_console"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:filter="test"
