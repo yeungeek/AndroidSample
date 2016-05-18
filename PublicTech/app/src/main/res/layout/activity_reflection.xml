@@ -17,6 +17,18 @@
         android:layout_height="wrap_content"
         android:text="Benchmarks"/>
 
+    <Button
+        android:id="@+id/id_toast_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Toast Show"/>
+
+    <Button
+        android:id="@+id/id_toast_hide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Toast Hide"/>
+
     <com.github.pedrovgs.lynx.LynxView
         android:id="@+id/id_console"
         android:layout_width="match_parent"

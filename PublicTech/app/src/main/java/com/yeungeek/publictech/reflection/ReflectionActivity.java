@@ -1,8 +1,13 @@
 package com.yeungeek.publictech.reflection;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Toast;
 
 import com.github.pedrovgs.lynx.LynxView;
 import com.yeungeek.publictech.BaseActivity;
@@ -31,15 +36,54 @@ public class ReflectionActivity extends BaseActivity {
     @BindView(R.id.id_console)
     LynxView lynxView;
 
+    Object mObj;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "### onCreate");
+        Toast toast = Toast.makeText(this, "Toast Reflection", Toast.LENGTH_LONG);
+        try {
+            Field field = toast.getClass().getDeclaredField("mTN");
+            field.setAccessible(true);
+            mObj = field.get(toast);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected int getResId() {
         return R.layout.activity_reflection;
+    }
+
+    @OnClick(R.id.id_toast_show)
+    public void toastShow() {
+        try {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                Field field = mObj.getClass().getDeclaredField("mNextView");
+                field.setAccessible(true);
+                LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v = inflate.inflate(R.layout.layout_toast, null);
+
+                field.set(mObj, v);
+            }
+            
+            Method method = mObj.getClass().getDeclaredMethod("show");
+            method.invoke(mObj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @OnClick(R.id.id_toast_hide)
+    public void toastHide() {
+        try {
+            Method method = mObj.getClass().getDeclaredMethod("hide");
+            method.invoke(mObj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.id_benchmarks)
@@ -129,7 +173,12 @@ public class ReflectionActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        toastHide();
     }
 
     private void inspectClasses() throws IllegalAccessException, InstantiationException, ClassNotFoundException {
@@ -148,7 +197,8 @@ public class ReflectionActivity extends BaseActivity {
         Person person = (Person) constructors[0].newInstance();
         Log.d(TAG, "### 2.constructor[0]: " + person.toString());
 
-        person = (Person) constructors[1].newInstance("test", 102);
+        Constructor<?> constructor = clazz.getConstructor(String.class, int.class);
+        person = (Person) constructor.newInstance("test", 102);
         Log.d(TAG, "### 3.constructor[1]: " + person.toString());
     }
 
@@ -169,7 +219,7 @@ public class ReflectionActivity extends BaseActivity {
 
         Log.d(TAG, "### " + nameMethod.getName() + " is private: " +
                 Modifier.isPrivate(nameMethod.getModifiers()));
-
+        nameMethod.setAccessible(true);
         nameMethod.invoke(father, true);
         Log.d(TAG, "### 4. invoke: " + father.toString());
     }
@@ -255,7 +305,7 @@ public class ReflectionActivity extends BaseActivity {
 
     private void inspectGeneric() throws Exception {
         Log.e(TAG, "### inspectGeneric");
-        Method method = Father.class.getMethod("getStringList", null);
+        Method method = Father.class.getMethod("getStringList");
         Type type = method.getGenericReturnType();
 
         if (type instanceof ParameterizedType) {
