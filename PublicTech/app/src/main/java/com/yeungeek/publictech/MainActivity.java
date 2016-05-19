@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.yeungeek.publictech.annotation.SimplePojo;
 import com.yeungeek.publictech.reflection.ReflectionActivity;
 
 import butterknife.OnClick;

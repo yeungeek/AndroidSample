@@ -1,4 +1,4 @@
-package com.yeungeek.publictech;
+package com.yeungeek.publictech.annotation;
 
 import com.yeungeek.annotation.PojoString;
 
