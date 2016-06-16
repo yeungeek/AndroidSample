@@ -22,4 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reflection"/>
+
+    <Button
+        android:id="@+id/id_proxy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proxy"/>
 </LinearLayout>
