@@ -17,6 +17,7 @@
         </activity>
 
         <activity android:name=".reflection.ReflectionActivity"/>
+        <activity android:name=".motionevent.MotionEventActivity"/>
     </application>
 
 </manifest>

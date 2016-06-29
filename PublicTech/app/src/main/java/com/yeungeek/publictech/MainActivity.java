@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.yeungeek.publictech.annotation.SimplePojo;
+import com.yeungeek.publictech.motionevent.MotionEventActivity;
 import com.yeungeek.publictech.proxy.RealSubject;
 import com.yeungeek.publictech.proxy.Subject;
 import com.yeungeek.publictech.proxy.TimeProxy;
@@ -39,5 +40,10 @@ public class MainActivity extends BaseActivity {
         Subject subject = (Subject) new TimeProxy().bind(delegate);
         subject.m1();
         subject.m2();
+    }
+
+    @OnClick(R.id.id_motion_event)
+    public void onMotionEvent(){
+        startActivity(new Intent(this, MotionEventActivity.class));
     }
 }
