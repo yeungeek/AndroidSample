@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
     <Button
         android:id="@+id/id_event_btn1"
         android:layout_width="wrap_content"
@@ -14,4 +15,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Btn2"/>
+
+    <ImageView
+        android:id="@+id/id_event_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image"
+        android:text="Not Transfer"/>
+
+    <com.yeungeek.publictech.motionevent.MotionView
+        android:id="@+id/id_motion_view"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@color/black"/>
+
+    <com.yeungeek.publictech.motionevent.MotionLayout
+        android:id="@+id/id_motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/id_event_btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Btn3"/>
+
+        <Button
+            android:id="@+id/id_event_btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Btn4"/>
+
+        <com.yeungeek.publictech.motionevent.MotionView
+            android:id="@+id/id_inner_motion_view"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@color/black"/>
+
+    </com.yeungeek.publictech.motionevent.MotionLayout>
 </LinearLayout>
