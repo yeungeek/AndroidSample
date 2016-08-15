@@ -21,8 +21,34 @@ public class MotionLayout extends LinearLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.d("DEBUG","#### viewGroup dispatchTouchEvent: " + ev.getAction());
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d("DEBUG", "#### ViewGroup dispatchTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.d("DEBUG", "#### ViewGroup dispatchTouchEvent ACTION_MOVE");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.d("DEBUG", "#### ViewGroup dispatchTouchEvent ACTION_UP");
+                break;
+        }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d("DEBUG", "#### ViewGroup onTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.d("DEBUG", "#### ViewGroup onTouchEvent ACTION_MOVE");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.d("DEBUG", "#### ViewGroup onTouchEvent ACTION_UP");
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override

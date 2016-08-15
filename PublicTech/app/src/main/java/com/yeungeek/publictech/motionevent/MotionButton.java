@@ -4,22 +4,19 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
+import android.widget.Button;
 
-/**
- * Created by yeungeek on 2016/6/30.
- */
+public class MotionButton extends Button {
 
-public class MotionView extends View {
-    public MotionView(Context context) {
+    public MotionButton(Context context) {
         super(context);
     }
 
-    public MotionView(Context context, AttributeSet attrs) {
+    public MotionButton(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MotionView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MotionButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -27,16 +24,15 @@ public class MotionView extends View {
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                Log.d("DEBUG", "#### View dispatchTouchEvent ACTION_DOWN");
+                Log.d("DEBUG", "#### Button dispatchTouchEvent ACTION_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
-                Log.d("DEBUG", "#### View dispatchTouchEvent ACTION_MOVE");
+                Log.d("DEBUG", "#### Button dispatchTouchEvent ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
-                Log.d("DEBUG", "#### View dispatchTouchEvent ACTION_UP");
+                Log.d("DEBUG", "#### Button dispatchTouchEvent ACTION_UP");
                 break;
         }
-
         return super.dispatchTouchEvent(event);
     }
 
@@ -44,24 +40,15 @@ public class MotionView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                Log.d("DEBUG", "#### View onTouchEvent ACTION_DOWN");
+                Log.d("DEBUG", "#### Button onTouchEvent ACTION_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
-                Log.d("DEBUG", "#### View onTouchEvent ACTION_MOVE");
+                Log.d("DEBUG", "#### Button onTouchEvent ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
-                Log.d("DEBUG", "#### View onTouchEvent ACTION_UP");
+                Log.d("DEBUG", "#### Button onTouchEvent ACTION_UP");
                 break;
         }
-
         return super.onTouchEvent(event);
-    }
-
-    @Override
-    public boolean performClick() {
-        Log.d("DEBUG", "#### view performClick: ");
-        boolean result = super.performClick();
-//        Log.d("DEBUG", "#### after performClick: ");
-        return result;
     }
 }
