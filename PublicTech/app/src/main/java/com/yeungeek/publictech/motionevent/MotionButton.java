@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Button;
 
+/**
+ * clickable
+ */
 public class MotionButton extends Button {
 
     public MotionButton(Context context) {
@@ -32,6 +35,9 @@ public class MotionButton extends Button {
             case MotionEvent.ACTION_UP:
                 Log.d("DEBUG", "#### Button dispatchTouchEvent ACTION_UP");
                 break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d("DEBUG", "#### Button dispatchTouchEvent ACTION_CANCEL");
+                break;
         }
         return super.dispatchTouchEvent(event);
     }
@@ -47,6 +53,9 @@ public class MotionButton extends Button {
                 break;
             case MotionEvent.ACTION_UP:
                 Log.d("DEBUG", "#### Button onTouchEvent ACTION_UP");
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d("DEBUG", "#### Button onTouchEvent ACTION_CANCEL");
                 break;
         }
         return super.onTouchEvent(event);

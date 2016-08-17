@@ -31,6 +31,9 @@ public class MotionLayout extends LinearLayout {
             case MotionEvent.ACTION_UP:
                 Log.d("DEBUG", "#### ViewGroup dispatchTouchEvent ACTION_UP");
                 break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d("DEBUG", "#### ViewGroup dispatchTouchEvent ACTION_CANCEL");
+                break;
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -47,13 +50,38 @@ public class MotionLayout extends LinearLayout {
             case MotionEvent.ACTION_UP:
                 Log.d("DEBUG", "#### ViewGroup onTouchEvent ACTION_UP");
                 break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d("DEBUG", "#### ViewGroup onTouchEvent ACTION_CANCEL");
+                break;
         }
-        return super.onTouchEvent(event);
+
+        boolean result = super.onTouchEvent(event);
+        Log.d("DEBUG", "#### ViewGroup onTouchEvent Result: " + result);
+        return result;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(ev);
-//        return true;
+        boolean intercept = false;
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d("DEBUG", "#### ViewGroup onInterceptTouchEvent ACTION_DOWN");
+//                intercept = true;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.d("DEBUG", "#### ViewGroup onInterceptTouchEvent ACTION_MOVE");
+                intercept = true;
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.d("DEBUG", "#### ViewGroup onInterceptTouchEvent ACTION_UP");
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d("DEBUG", "#### ViewGroup onInterceptTouchEvent ACTION_CANCEL");
+                break;
+        }
+
+//        intercept = true;
+        Log.d("DEBUG", "#### ViewGroup onInterceptTouchEvent Result: " + intercept);
+        return intercept;
     }
 }

@@ -35,6 +35,9 @@ public class MotionView extends View {
             case MotionEvent.ACTION_UP:
                 Log.d("DEBUG", "#### View dispatchTouchEvent ACTION_UP");
                 break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d("DEBUG", "#### View dispatchTouchEvent ACTION_CANCEL");
+                break;
         }
 
         return super.dispatchTouchEvent(event);
@@ -52,6 +55,9 @@ public class MotionView extends View {
             case MotionEvent.ACTION_UP:
                 Log.d("DEBUG", "#### View onTouchEvent ACTION_UP");
                 break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.d("DEBUG", "#### View onTouchEvent ACTION_CANCEL");
+                break;
         }
 
         return super.onTouchEvent(event);
@@ -59,9 +65,7 @@ public class MotionView extends View {
 
     @Override
     public boolean performClick() {
-        Log.d("DEBUG", "#### view performClick: ");
-        boolean result = super.performClick();
-//        Log.d("DEBUG", "#### after performClick: ");
-        return result;
+        Log.d("DEBUG", "#### View performClick");
+        return super.performClick();
     }
 }

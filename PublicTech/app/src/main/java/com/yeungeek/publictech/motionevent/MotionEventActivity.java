@@ -44,7 +44,7 @@ public class MotionEventActivity extends BaseActivity {
                 Log.d("DEBUG", "#### Activity onTouchEvent ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
-                Log.d("DEBUG", "#### Activity onTouchEvent ACTION_UP");
+                Log.d("DEBUG", "#### Activity dispatchTouchEvent ACTION_UP");
                 break;
         }
         return super.onTouchEvent(event);
