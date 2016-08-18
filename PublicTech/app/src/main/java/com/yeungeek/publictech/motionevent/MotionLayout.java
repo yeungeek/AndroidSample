@@ -35,7 +35,9 @@ public class MotionLayout extends LinearLayout {
                 Log.d("DEBUG", "#### ViewGroup dispatchTouchEvent ACTION_CANCEL");
                 break;
         }
-        return super.dispatchTouchEvent(ev);
+        boolean result = super.dispatchTouchEvent(ev);
+        Log.d("DEBUG", "#### ViewGroup dispatchTouchEvent Result: " + result);
+        return result;
     }
 
     @Override

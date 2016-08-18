@@ -39,7 +39,9 @@ public class MotionButton extends Button {
                 Log.d("DEBUG", "#### Button dispatchTouchEvent ACTION_CANCEL");
                 break;
         }
-        return super.dispatchTouchEvent(event);
+        boolean result = super.dispatchTouchEvent(event);
+        Log.d("DEBUG", "#### Button dispatchTouchEvent Result: " + result);
+        return result;
     }
 
     @Override
@@ -58,6 +60,8 @@ public class MotionButton extends Button {
                 Log.d("DEBUG", "#### Button onTouchEvent ACTION_CANCEL");
                 break;
         }
-        return super.onTouchEvent(event);
+        boolean result = super.onTouchEvent(event);
+        Log.d("DEBUG", "#### Button onTouchEvent Result: " + result);
+        return result;
     }
 }

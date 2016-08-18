@@ -1,44 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <!--<com.yeungeek.publictech.motionevent.MotionButton-->
+        <!--android:id="@+id/id_event_btn"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Btn1"/>-->
+
+    <com.yeungeek.publictech.motionevent.MotionView
+        android:id="@+id/id_motion_view"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+
+        android:background="@color/black"/>
+
+    <com.yeungeek.publictech.motionevent.MotionLayout
+        android:id="@+id/id_motion_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray"
         android:orientation="vertical">
 
         <com.yeungeek.publictech.motionevent.MotionButton
-            android:id="@+id/id_event_btn1"
+            android:id="@+id/id_event_btn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Btn1"/>
+            android:text="Btn3"/>
 
         <com.yeungeek.publictech.motionevent.MotionView
-            android:id="@+id/id_motion_view"
+            android:id="@+id/id_inner_motion_view"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@color/black"/>
-
-        <com.yeungeek.publictech.motionevent.MotionLayout
-            android:id="@+id/id_motion_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/gray"
-            android:orientation="vertical">
-
-            <com.yeungeek.publictech.motionevent.MotionButton
-                android:id="@+id/id_event_btn3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Btn3"/>
-
-            <com.yeungeek.publictech.motionevent.MotionView
-                android:id="@+id/id_inner_motion_view"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@color/black"/>
-        </com.yeungeek.publictech.motionevent.MotionLayout>
-    </LinearLayout>
-</ScrollView>
+    </com.yeungeek.publictech.motionevent.MotionLayout>
+</LinearLayout>

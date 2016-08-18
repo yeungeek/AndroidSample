@@ -1,6 +1,7 @@
 package com.yeungeek.publictech.motionevent;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -40,7 +41,9 @@ public class MotionView extends View {
                 break;
         }
 
-        return super.dispatchTouchEvent(event);
+        boolean result = super.dispatchTouchEvent(event);
+        Log.d("DEBUG", "#### View dispatchTouchEvent Result: " + result);
+        return result;
     }
 
     @Override
@@ -60,7 +63,9 @@ public class MotionView extends View {
                 break;
         }
 
-        return super.onTouchEvent(event);
+        boolean result = super.onTouchEvent(event);
+        Log.d("DEBUG", "#### View onTouchEvent Result: " + result);
+        return result;
     }
 
     @Override
